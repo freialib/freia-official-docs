@@ -1,0 +1,113 @@
+$doc_imagePath: 'images/modules/doc/' !default;
+$doc_fontfamily: Helvetica Neue, Helvetica, Arial !default;
+// ----------------------------------------------------------------------------
+
+.doc {
+	width: 570px;
+	font-family: $doc_fontfamily;
+	font-size: 13px;
+	line-height: 24px;
+
+	@media screen and (max-width: 920px) {
+		width: auto;
+	}
+}
+
+.doc > p a {
+	text-decoration: none;
+	border-bottom: 1px solid $main1;
+	color: #424242;
+
+	&:hover, &.d-hover {
+		color: #000;
+		border-bottom-color: $accent;
+	}
+}
+
+.doc > ul {
+	margin-bottom: 1.5em;
+}
+
+.doc > ul > li {
+	margin-left: 34px;
+	list-style-type: lower-greek;
+}
+
+.doc > h1 {
+	font-family: $sansSerif;
+}
+
+.doc > h2 {
+	margin-top: 2em;
+	font-family: $sansSerif;
+	border-bottom: 1px solid $alt2;
+	display: inline-block;
+
+	& > code {
+		font-family: $sansSerif;
+		font-size: 20px;
+		letter-spacing: 2px;
+	}
+}
+
+.doc > h3 {
+	font-family: $sansSerif;
+	font-weight: normal;
+	font-size: 20px;
+}
+
+.doc > h4 {
+	margin: 1em 0;
+	font-family: $sansSerif;
+	font-size: 16px;
+}
+
+.doc > h5 {
+	font-family: $sansSerif;
+	font-size: 13px;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.doc > h6 {
+	font-family: $sansSerif;
+}
+
+.doc > hr {
+	background: transparent url('#{$doc_imagePath}delimiter.png') repeat-x 0px 0px;
+	border: 0;
+	height: 1px;
+	margin: 25px 0 20px 0;
+}
+
+.doc > p + p {
+	margin-top: 0.7em;
+}
+
+.doc > pre {
+	overflow-x: auto;
+	overflow-y: hidden;
+	margin-right: 10px;
+	box-shadow: 3px 3px 7px 0px rgba(50, 50, 50, 0.35);
+	tab-size: 4;
+	font-size: 12px;
+	line-height: 16px;
+	background: #fff;
+	padding: 5px;
+	border-top: 2px solid $alt1;
+
+	& > code {
+		font-family: $monospace;
+	}
+}
+
+.doc > pre + h4 {
+	margin-top: 2em;
+}
+
+// ---- Components ------------------------------------------------------------
+
+.doc-Note {
+	font-size: 12px;
+	line-height: 20px;
+}

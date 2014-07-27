@@ -1,0 +1,18 @@
+
+// Predefined zindex planes
+// ------------------------
+
+// Always specify a plane, never use a number in zindex. This way the zindex
+// organization of the entire site can be visualized and bugs can be avoided.
+
+// zindex is positioned relative to absolute positioned elements, if you have
+// elements inside absolute positioned elements define a zindex for both and
+// indent the variable entries bellow accordingly to specify the nesting
+
+$zindexHorizon : 0;
+$zindexSidebar : 1000;
+// ---
+$zindexOverlay : 2000;
+$zindexModal   : $zindexOverlay + 100;
+
+

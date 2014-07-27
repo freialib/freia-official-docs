@@ -1,0 +1,24 @@
+@import 'conf/zindex';
+@import 'conf/colors';
+@import 'conf/fonts';
+
+// reset
+@import 'conf/reset';
+
+// window Modules
+$window_imagePath: '/web/images/modules/window/';
+@import 'modules/window';
+
+// toc Module
+@import 'modules/toc';
+
+// keyinfo Module
+@import 'modules/keyinfo';
+
+// doc Module
+$doc_fontfamily: $sansSerif;
+$doc_imagePath: '/web/images/modules/doc/';
+@import 'modules/doc';
+
+// code Module
+@import 'modules/code';

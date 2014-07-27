@@ -1,0 +1,20 @@
+
+// Debug information
+// -----------------
+
+// Used by styleguide
+
+.d-main1  { background: $main1; }
+.d-main2  { background: $main2; }
+.d-accent { background: $accent; }
+.d-alt1   { background: $alt1; }
+.d-alt2   { background: $alt2; }
+
+.d-swatch {
+	width: 100px;
+	height: 100px;
+	float: left;
+	font-family: monospace;
+	font-size: 18px;
+	color: white;
+}

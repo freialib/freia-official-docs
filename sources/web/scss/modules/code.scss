@@ -1,0 +1,11 @@
+.code {
+	font-family: $monospace;
+}
+
+// ---- Attributes ------------------------------------------------------------
+
+.code.code-class {
+	font-family: $sansSerif;
+	font-weight: bold;
+	color: #000;
+}

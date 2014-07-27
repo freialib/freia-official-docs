@@ -1,0 +1,102 @@
+$window_zindex: 0 !default;
+$window_imagePath: 'images/modules/window/' !default;
+// ----------------------------------------------------------------------------
+
+.window {
+	position: relative;
+	z-index: $zindexHorizon;
+	background-color: rgba(251, 251, 251, 1);
+	background-image: url('#{$window_imagePath}subtlepatterns/fabric_of_squares_gray.png');
+	min-height: 100%;
+}
+
+// ---- Components ------------------------------------------------------------
+
+.window-Body {
+	font-family: $sansSerif;
+	margin-left: 245px;
+	position: relative;
+	padding-top: 170px;
+	padding-left: 35px;
+	padding-bottom: 200px;
+	min-height: 100%;
+
+	@media screen and (max-width: 920px) {
+		margin-left: 0;
+		padding-right: 35px;
+		padding-bottom: 50px;
+	}
+}
+
+.window-Nav {
+	font-family: $sansSerif;
+	width: 245px;
+	position: fixed;
+	top: 0; bottom: 0; left: 0;
+	overflow-y: scroll;
+	background: #fff;
+	box-sizing: border-box;
+	border-right: 1px solid $main1;
+	box-shadow: 3px 0px 7px 0px rgba(50, 50, 50, 0.25);
+	height: 100%;
+
+	@media screen and (max-width: 920px) {
+		padding-left: 10px;
+		border-top: 1px solid #212E62;
+		border-right: 0;
+		width: auto;
+		position: static;
+		overflow: auto;
+		box-shadow: none;
+	}
+}
+
+.window-Navhead {
+	height: 30px;
+	font-size: 11px;
+	font-weight: bold;
+	padding-top: 13px;
+	padding-right: 5px;
+	box-sizing: border-box;
+	text-align: right;
+	background-image: url('#{$window_imagePath}navhead-border.png');
+	background-repeat: no-repeat;
+	background-position: -15px 29px;
+
+	@media screen and (max-width: 920px) {
+		text-align: left;
+	}
+}
+
+.window-NavJump {
+	display: none;
+	font-size: 12px;
+	margin-bottom: 2em;
+	text-align: right;
+
+	& > a {
+		color: $main1;
+		text-decoration: none;
+		border-bottom: 1px solid $alt2;
+
+		&:hover {
+			border-color: $alt1;
+		}
+	}
+
+	@media screen and (max-width: 920px) {
+		display: block;
+	}
+}
+
+.window-Navbody {
+	position: relative;
+
+	@media screen and (max-width: 920px) {
+		border-right: 0;
+		width: auto;
+		position: static;
+		overflow-y: auto;
+		box-shadow: none;
+	}
+}

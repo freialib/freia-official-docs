@@ -1,0 +1,69 @@
+.toc {
+	padding-left: 13px;
+	padding-bottom: 20px;
+	line-height: 1.2;
+}
+
+.toc > ol {
+	margin-left: 32px;
+}
+
+.toc > ol > li {
+	list-style-type: square;
+
+	& > ul > li {
+		list-style-type: lower-greek;
+		margin-left: 20px;
+		font-size: 12px;
+	}
+}
+
+.toc > ul {
+	margin-left: 13px;
+}
+
+.toc > ul > li {
+	&:before {
+		content: ' - ';
+	}
+}
+
+// ---- Components ------------------------------------------------------------
+
+.toc-Title {
+	font-size: 14px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	margin-bottom: 14px;
+	margin-top: 16px;
+
+	a {
+		text-decoration: underline;
+		color: $main2;
+	}
+
+	a:hover, a.d-hover {
+		text-decoration: none;
+		color: $main2;
+	}
+}
+
+.toc-Subtitle {
+	color: $alt1;
+	display: block;
+	margin-left: 13px;
+	font-size: 12px;
+	font-style: italic;
+	margin-top: 10px;
+}
+
+.toc-Entry {
+	font-size: 13px;
+	color: $main2;
+	text-decoration: none;
+
+	&:hover, &.d-hover {
+		color: $accent;
+		text-decoration: underline;
+	}
+}
