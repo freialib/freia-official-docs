@@ -15,10 +15,10 @@ freia.</small></p>
 
 <p>Among the solutions we provide in the main modules, you'll find easy routing
 though <code class="code code-class">HttpDispatcher</code></b>, programatic
-security and access control via <code class="code code-class">SecurityID</code>,
-a easy to use cli system via <code class="code code-class">Console</code>,
-flexible migration system via the <code class="code code-class">pdx</code>
-command, and much more...
+security and access control via <code class="code code-class">Auth</code> and
+protocols, an easy to use cli system via
+<code class="code code-class">Console</code>, flexible migration system via
+the <code class="code code-class">pdx</code> command, and much more...
 
 <p>The code is clean and easy to read, verifiable, self contained and
 replacable.</p>
