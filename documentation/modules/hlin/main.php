@@ -5,6 +5,7 @@
 		<li><a class="toc-Entry" href="#doc-hlin-interfaces">Interfaces</a></li>
 		<li><a class="toc-Entry" href="#doc-hlin-contexts">Using Contexts</a></li>
 		<li><a class="toc-Entry" href="#doc-hlin-errors">Exceptions &amp; Errors</a></li>
+		<li><a class="toc-Entry" href="#doc-hlin-protocols">Authorizer &amp; Protocols</a></li>
 		<li>
 			<a class="toc-Entry" href="#doc-hlin-console">Using the Console</a>
 			<ul>
@@ -64,6 +65,7 @@ specialises on classes that require deep coupling.</p>
 <?php include __DIR__.'/concepts/interfaces.php' ?>
 <?php include __DIR__.'/concepts/contexts.php' ?>
 <?php include __DIR__.'/concepts/errors.php' ?>
+<?php include __DIR__.'/concepts/protocols.php' ?>
 <?php include __DIR__.'/concepts/using_console/main.php' ?>
 
 <?php

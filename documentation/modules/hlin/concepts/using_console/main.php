@@ -17,7 +17,7 @@ minimal example:</p>
 	$autoloader = autoloader($syspath);
 
 	if ($autoloader === null) {
-		die('Err: failed to initialize autoloader')
+		die('Err: failed to initialize autoloader');
 	}
 
 	require "$syspath/context.php";

@@ -2,16 +2,16 @@
 due to limitations in the language ("Array" is reserved). The class contains
 only static helpers.</p>
 
-<h4><code>Arr::implode</code></h4>
+<h4><code>Arr::join</code></h4>
 
-<p><code>Arr::implode($glue, array $list, callable $manipulator)</code> is used
+<p><code>Arr::join($glue, array $list, callable $manipulator)</code> is used
 as an advanced version of PHP standard <code>implode</code> that allows for
-manipulation of the value. The <code>Arr::implode</code> also has a convenient
+manipulation of the value. The <code>Arr::join</code> also has a convenient
 "if <code>false</code> the value from the list is ignored" so it works in both
 filtering and joinging at the same time.</p>
 
 <pre><code class="php">$list = [ 'x' => 10, 'y' => 20, 'z' => 30 ];
-$res = \hlin\Arr::implode(";\n", $list, function ($key, $val) {
+$res = \hlin\Arr::join(";\n", $list, function ($key, $val) {
 	if ($val == 20) return false;
 	return "$key -> $val";
 });</code></pre>

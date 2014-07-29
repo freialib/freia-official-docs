@@ -11,7 +11,7 @@
 	</ul>
 	<p></p>
 	<ul>
-		<li><a class="toc-Entry" href="#doc-fenrir-MakeCommand">MakeCommand</a></li>
+		<li><a class="toc-Entry" href="#fenrir-tools-MakeCommand">MakeCommand</a></li>
 	</ul>
 
 <?php end_toc() ?>
@@ -35,7 +35,7 @@ non-portable techniques).</p>
 
 <?php foreach ($classes as $class): ?>
 	<h3 id="fenrir-<?= str_replace('.', '-', $class) ?>">
-		<code>fenrir.<?= $class ?></code> class
+		<code>fenrir.<?= $class ?></code>
 	</h3>
 	<?php include __DIR__."/classes/$class.php" ?>
 <?php endforeach; ?>
