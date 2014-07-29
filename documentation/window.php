@@ -22,7 +22,7 @@
 		<div class="window-Navbody">
 			<div class="keyinfo">
 				<span class="keyinfo-Lead">
-					<i class="icon-download"></i> <a href="https://github.com/freialib/prototype/archive/master.zip">Get Freia</a> <span class="keyinfo-Version">v0.0.0</span>
+					<i class="icon-download"></i> <a href="https://github.com/freialib/framework/archive/draft.zip">Get Freia</a> <span class="keyinfo-Version">v0.0.0</span>
 				</span>
 				<ul>
 					<li><i class="icon-hammer"></i> <a href="/license.txt">BSD 2-clause License</a></li>
