@@ -30,36 +30,64 @@ dependencies into your revision control system.</p>
 <pre><code class="json">{
 	"autoload": {
 		"freia": {
-			"load": [ "system", "linker", "vendor" ]
+			"load": [ "vendor" ]
 		}
 	},
+
+	"minimum-stability": "dev",
 	"require": {
-		"php": ">=5.4.10",
-		"freia": "~1.0",
-		"hlin/archetype": "~1.0",
-		"hlin/attribute": "~1.0",
-		"hlin/tools": "~1.0"
+		"freia/autoloader": "dev-master",
+		"hlin/archetype": "dev-master",
+		"hlin/attribute": "dev-master",
+		"hlin/tools": "dev-master"
 	}
 }</code></pre>
 
-<h4>All modules</h4>
+<p>Add paths to <code>load</code> (ie. your own paths) to have them recognized
+by freia's autoloader.</p>
+
+<h4>Raw Autoloader</h4>
+
+<p>All out coding hermit mode,</p>
 
 <pre><code class="json">{
 	"autoload": {
 		"freia": {
-			"load": [ "system", "linker", "vendor" ]
+			"load": [ "vendor" ]
 		}
 	},
+
+	"minimum-stability": "dev",
 	"require": {
-		"php": ">=5.4.10",
-		"freia": "~1.0",
-		"hlin/archetype": "~1.0",
-		"hlin/attribute": "~1.0",
-		"hlin/tools": "~1.0",
-		"fenrir/system": "~1.0",
-		"fenrir/tools": "~1.0"
+		"freia/autoloader": "dev-master"
 	}
 }</code></pre>
+
+<h4>Don't care for filtering though modules?</h4>
+
+<p>The bundle module is completely empty and won't get picked up by freia's
+autoloader, it just requires all the official modules in the freia library.</p>
+
+
+<p>For a list of bundled in modules please refer to the
+<a href="https://github.com/freialib/freialib-bundle/blob/master/composer.json">freialib-bundle/composer.json</a></p>
+
+
+<pre><code class="json">{
+	"autoload": {
+		"freia": {
+			"load": [ "vendor" ]
+		}
+	},
+
+	"minimum-stability": "dev",
+	"require": {
+		"freialib/bundle": "dev-master"
+	}
+}</code></pre>
+
+<p>As before add paths to <code>load</code> (ie. your own paths) to have them
+recognized by freia's autoloader.</p>
 
 <h4>Basic framework for getting started</h4>
 
@@ -69,13 +97,13 @@ structure from scratch to get the most benefit by avoiding any unncesary
 clutter that a generic structure might impose, but if you're in a hurry or need
 a reference point here you go:</p>
 
-<pre><code class="vdr / no-highlight">composer create-project --prefer-dist freialib/framework YOUR_PROJECT/ "~1.0"
-cd YOUR_PROJECT/1.0
+<pre><code class="vdr / no-highlight">git clone --depth=1 https://github.com/freialib/framework YOUR_PROJECT/
+cd YOUR_PROJECT/
+rm -rf .git
+cd 1.x/
 git init
 git add -A
-git commit -m "base"</code></pre>
-
-<p>If you don't have the composer command run the following to get it:</p>
-
-<pre><code class="vdr / no-highlight">curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer</code></pre>
+git commit -m "1.0"</code></pre>
+<p><small>Above <code>1.0</code> and <code>1.x</code> refer to your own project; not freia.</small></p>
+<p>If you don't have the <code>git</code> please go to
+<a href="http://git-scm.com/">http://git-scm.com/</a>, it's a great tool <i class="icon-emo-wink2"></i></p>

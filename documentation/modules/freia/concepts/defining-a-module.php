@@ -20,7 +20,7 @@ freia only requires <code>src</code> and <code>confs</code>; anything else
 is considered specialized functionality (this includes tests). Here is a module
 example:</p>
 
-<pre><code class="no-highlight">your_module/
+<pre><code class="vdr / no-highlight">your_module/
 	confs/
 	src/
 	composer.json
