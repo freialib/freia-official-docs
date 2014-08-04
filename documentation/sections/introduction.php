@@ -33,14 +33,3 @@ send tweets on <a href="https://twitter.com/">twitter</a> using the hashtag
 <p>The freia library is distributed under a <b>BSD 2-clause license</b>.
 <br/><small>See <a href="#doc-license">License</a> section for more
 information.</small></p>
-
-<p><i><b>The freia library is currently still in early development</b>.
-Version v0.1 is available if you wish to take a look at it; it's
-production usable, just need to know what you're doing. The major parts
-of the code is based on tools that have been used in production.</i></p>
-
-<p><i>Documentation is complete at this time. Version 1.0 won't have
-any re-design changes, just test coverage, test tools, etc; design changes
-required by tests will happen if absolutely necesary. Documentation that refers
-to "dev-master" as dependencies will be switched to "1.0" and stability
-"stable" with the advent of v1.0</i></p>

@@ -21,7 +21,7 @@ $window_imagePath: 'images/modules/window/' !default;
 	padding-bottom: 200px;
 	min-height: 100%;
 
-	@media screen and (max-width: 920px) {
+	@media screen and (max-width: 900px) {
 		margin-left: 0;
 		padding-right: 35px;
 		padding-bottom: 50px;
@@ -40,7 +40,7 @@ $window_imagePath: 'images/modules/window/' !default;
 	box-shadow: 3px 0px 7px 0px rgba(50, 50, 50, 0.25);
 	height: 100%;
 
-	@media screen and (max-width: 920px) {
+	@media screen and (max-width: 900px) {
 		padding-left: 10px;
 		border-top: 1px solid #212E62;
 		border-right: 0;
@@ -63,7 +63,7 @@ $window_imagePath: 'images/modules/window/' !default;
 	background-repeat: no-repeat;
 	background-position: -15px 29px;
 
-	@media screen and (max-width: 920px) {
+	@media screen and (max-width: 900px) {
 		text-align: left;
 	}
 }
@@ -84,7 +84,7 @@ $window_imagePath: 'images/modules/window/' !default;
 		}
 	}
 
-	@media screen and (max-width: 920px) {
+	@media screen and (max-width: 900px) {
 		display: block;
 	}
 }
@@ -92,7 +92,7 @@ $window_imagePath: 'images/modules/window/' !default;
 .window-Navbody {
 	position: relative;
 
-	@media screen and (max-width: 920px) {
+	@media screen and (max-width: 900px) {
 		border-right: 0;
 		width: auto;
 		position: static;

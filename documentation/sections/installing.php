@@ -34,12 +34,11 @@ dependencies into your revision control system.</p>
 		}
 	},
 
-	"minimum-stability": "dev",
 	"require": {
-		"freia/autoloader": "dev-master",
-		"hlin/archetype": "dev-master",
-		"hlin/attribute": "dev-master",
-		"hlin/tools": "dev-master"
+		"freia/autoloader": "~1.0.0",
+		"hlin/archetype": "~1.0.0",
+		"hlin/attribute": "~1.0.0",
+		"hlin/tools": "~1.0.0"
 	}
 }</code></pre>
 
@@ -57,9 +56,8 @@ by freia's autoloader.</p>
 		}
 	},
 
-	"minimum-stability": "dev",
 	"require": {
-		"freia/autoloader": "dev-master"
+		"freia/autoloader": "~1.0.0"
 	}
 }</code></pre>
 
@@ -72,7 +70,6 @@ autoloader, it just requires all the official modules in the freia library.</p>
 <p>For a list of bundled in modules please refer to the
 <a href="https://github.com/freialib/freialib-bundle/blob/master/composer.json">freialib-bundle/composer.json</a></p>
 
-
 <pre><code class="json">{
 	"autoload": {
 		"freia": {
@@ -80,14 +77,55 @@ autoloader, it just requires all the official modules in the freia library.</p>
 		}
 	},
 
-	"minimum-stability": "dev",
 	"require": {
-		"freialib/bundle": "dev-master"
+		"freialib/bundle": "~1.0.0"
 	}
 }</code></pre>
 
 <p>As before add paths to <code>load</code> (ie. your own paths) to have them
 recognized by freia's autoloader.</p>
+
+<h4>A more complete composer.json for completeness</h4>
+
+<p>Just in case you want to customize rather then build up
+your <code>composer.json</code>.</p>
+
+<pre><code class="json">{
+	"name": "Awesome",
+	"version": "1.0.0",
+
+	"authors": [
+		{
+			"name": "Awesome",
+			"role": "Developer"
+		}
+	],
+
+	"autoload": {
+		"freia": {
+			"load": [
+				"src/server/system",
+				"src/server/theme",
+				"packagist"
+			]
+		}
+	},
+
+	"config": {
+		"preferred-install": "dist",
+		"vendor-dir": "packagist",
+		"bin-dir": "packagist/.bin",
+		"cache-files-ttl": 0
+	},
+
+	"require": {
+		"php": ">=5.4.10",
+		"freialib/bundle": "~1.0.0"
+	}
+}</code></pre>
+
+<p><small>The above is used as-is in the example application. See next section for
+more details.</small></p>
 
 <h4>Basic framework for getting started</h4>
 
