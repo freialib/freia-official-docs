@@ -4,7 +4,7 @@
 <code>./console</code> is your console script, to get general help you just
 invoke:
 
-<pre><code class="unix">$ ./console help
+<pre><code class="bash">$ ./console help
 # or just...
 $ ./console
 # or...
@@ -15,7 +15,7 @@ $ ./console --help
 category are refered to as "application commands" and have "application" as
 the category.</p>
 
-<pre><code class="unix"># all commands
+<pre><code class="bash"># all commands
 $ ./console help
 # only application commands
 $ ./console help application
@@ -24,6 +24,6 @@ $ ./console help fenrir.tools</code></pre>
 
 <p>To get help on a command simply use the <code>?</code> command:</p>
 
-<pre><code class="unix">$ ./console ? help
+<pre><code class="bash">$ ./console ? help
 $ ./console ? pdx
 $ ./console ? make</code></pre>

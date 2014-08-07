@@ -62,46 +62,43 @@ is actually implicitly mandatory, so you can just pass empty arrays for the
 blacklist and aliaslist.</p>
 
 <h5>whitelist</h5>
-<pre><code class="php">&lt;?php namespace hlin; return array
-	(
-		// you can use the roles as keys
-		'admin' => array
-			(
-				Check::entities([ 'admin_area' ])->unrestricted(),
-			),
-		// the guest role is specified though a constant Guest
-		Auth::Guest => array
-			(
-				Check::entities([ 'login' ])->unrestricted(),
-			),
+<pre><code class="php">&lt;?php namespace hlin; return [
 
-		// or create tag roles (see aliaslist for usefulness)
-		'+members' => array
-			(
-				Check::entities([ 'access_site' ])->unrestricted(),
-			),
+	// you can use the roles as keys
+	'admin' => [
+		Check::entities([ 'admin_area' ])->unrestricted(),
+	],
 
-	); # conf</code></pre>
+	// the guest role is specified though a constant Guest
+	Auth::Guest => [
+		Check::entities([ 'login' ])->unrestricted(),
+	],
+
+	// or create tag roles (see aliaslist for usefulness)
+	'+members' => [
+		Check::entities([ 'access_site' ])->unrestricted(),
+	],
+
+]; # conf</code></pre>
 <h5>blacklist</h5>
-<pre><code class="php">&lt;?php namespace hlin; return array
-	(
-		// due to this rule guests can't "access_site" regardless of what
-		// the whitelist specifies; blacklists are absolute
-		Auth::Guest => array
-			(
-				Check::entities([ 'access_site' ])->unrestricted(),
-			),
+<pre><code class="php">&lt;?php namespace hlin; return [
 
-		// tag roles don't work here; blacklists don't invoke aliases, you must
-		// explicitly blacklist a role, inheriting from a role doesn't imply
-		// you inherit it's blacklist, only it's whitelisting
+	// due to this rule guests can't "access_site" regardless of what
+	// the whitelist specifies; blacklists are absolute
+	Auth::Guest => [
+		Check::entities([ 'access_site' ])->unrestricted(),
+	],
 
-	); # conf
+	// tag roles don't work here; blacklists don't invoke aliases, you must
+	// explicitly blacklist a role, inheriting from a role doesn't imply
+	// you inherit it's blacklist, only it's whitelisting
+
+]; # conf
 </code></pre>
 <h5>aliaslist</h5>
-<pre><code class="php">&lt;?php namespace hlin; return array
-	(
-		'member' => [ '+members' ],
-		'admin' => [ '+members' ],
+<pre><code class="php">&lt;?php namespace hlin; return [
 
-	); # conf</code></pre>
+	'member' => [ '+members' ],
+	'admin' => [ '+members' ],
+
+]; # conf</code></pre>

@@ -29,7 +29,7 @@ minimal example:</p>
 
 <p>Invoking from the command line is fairly simple.</p>
 
-<pre><code class="unix">$ cd path/to/console
+<pre><code class="bash">$ cd path/to/console
 # simple invokation
 $ ./console
 # you can also just invoke from outside (we'll assume parent is server/)

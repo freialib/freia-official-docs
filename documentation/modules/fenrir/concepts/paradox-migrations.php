@@ -52,82 +52,90 @@ key specifies the "migrations module" (choose anything; we recomend grouping
 into one module as much as possible, easier to keep in sync), the second key
 specifies the version of the migration, and the value specifies the
 configuration that holds the migration logic.</p>
-<pre><code class="php">&lt;?php return array
-	(
-		'demo-main' => array
-			(
-				'1.0.0' => 'timeline/demo/install',
-			)
+<pre><code class="php">&lt;?php return [
 
-	); # conf
+	'example-main' => [
+		'1.0.0' => 'timeline/example/install',
+	]
+
+]; # conf
 </code></pre>
 
-<h4>timeline/demo/install</h4>
+<h4>timeline/example/install</h4>
 <p>Migrations have a lot of steps, you can customize, in general most
 migrations only use one or two (since you're usually either only creating, only
 updating, or only modifying structure, not everything at once).</p>
-<pre><code class="php">&lt;?php return array
-	(
-		'description'
-			=> 'Install for basic demo tables.',
+<pre><code class="php">&lt;?php return [
 
-		'configure' => array
-			(
-				'tables' => array
-					(
-						'forums',
-						'threads',
-						'posts'
-					)
-			),
+	'description'
+		=> 'Install for basic example tables.',
 
-		'create:tables' => array
-			(
-				'forums' =>
-					'
-						_id   [primaryKey],
-						title [title],
+	'configure' => [
+		'tables' => [
+			'forums',
+			'threads',
+			'posts'
+		]
+	],
 
-						PRIMARY KEY (_id)
-					',
-				'threads' =>
-					'
-						_id   [primaryKey],
-						title [title],
+	'create:tables' => [
+		'forums' =>
+			'
+				_id   [primaryKey],
+				title [title],
 
-						PRIMARY KEY (_id)
-					',
-				'posts' =>
-					'
-						_id   [primaryKey],
-						body  [block],
+				PRIMARY KEY (_id)
+			',
+		'threads' =>
+			'
+				_id   [primaryKey],
+				forum [foreignKey],
+				title [title],
 
-						PRIMARY KEY (_id)
-					',
-			),
+				PRIMARY KEY (_id)
+			',
+		'posts' =>
+			'
+				_id    [primaryKey],
+				body   [block],
 
-	); # config</code></pre>
+				PRIMARY KEY (_id)
+			',
+	],
+
+	'bindings' => [
+		'threads' => [
+			//           table     onDelete   onUpdate   idKey
+			//           --------  ---------  ---------  -----
+			'forum' => [ 'forums', 'CASCADE', 'CASCADE', '_id' ],
+
+			// specifying the id is optional, will default to _id
+		]
+	]
+
+]; # conf</code></pre>
 
 <p>Here's another migration:</p>
 
-<pre><code class="php">&lt;?php return array
-	(
-		'description'
-			=> 'Add forum and thread column.',
+<pre><code class="php">&lt;?php return [
 
-		'modify:tables' => array
-			(
-				'threads' =>
-					'
-						ADD COLUMN `forum` [foreignKey] AFTER `_id`
-					',
-				'posts' =>
-					'
-						ADD COLUMN `thread` [foreignKey] AFTER `_id`
-					',
-			),
+	'description'
+		=> 'Add thread column.',
 
-	); # config</code></pre>
+	'modify:tables' => [
+		'posts' =>
+			'
+				ADD COLUMN `thread` [foreignKey] AFTER `_id`
+			',
+	],
+
+	'bindings' => [
+		'posts' => [
+			'thread' => [ 'threads', 'CASCADE', 'CASCADE' ],
+		]
+	]
+
+]; # conf</code></pre>
 
 <h4>interdependence</h4>
 <p>Need a migration that's dependent on some other modules? Specify the value
@@ -135,19 +143,18 @@ for the version as an array, with the 2nd component in the array an array of
 modules and version they need to be at before this module can reach the
 version specified by the migration.</p>
 
-<pre><code class="php">&lt;?php return array
-	(
-		'demo-main' => array
-			(
-				'1.0.0' => 'timeline/demo/install',
-				'1.1.0' =>
-					[
-						'timeline/demo/1.1.0', [
-							'demo-access' => '1.0.0',
-							'some-other-module' => '2.1.4'
-						]
-					]
-			)
+<pre><code class="php">&lt;?php return [
 
-	); # conf
+	'example-main' => [
+
+		'1.0.0' => 'timeline/example/install',
+		'1.1.0' => [
+			'timeline/example/1.1.0', [
+				'example-access' => '1.0.0',
+				'some-other-module' => '2.1.4'
+			]
+		]
+	]
+
+]; # conf
 </code></pre>

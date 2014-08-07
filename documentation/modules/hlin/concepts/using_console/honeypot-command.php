@@ -5,7 +5,7 @@ IDEs can use to "get the correct idea" of what extends what. This both helps
 in providing accurate autocomplete information as well as avoiding annoying
 "this class must be declared abstract" false positives.</p>
 
-<pre><code class="unix"># regenerate all honeypots
+<pre><code class="bash"># regenerate all honeypots
 $ ./console honeypot</code></pre>
 
 <p>Some IDEs (notably netbeans) are slow to process. You may need to both
