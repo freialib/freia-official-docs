@@ -56,18 +56,31 @@ function autoloader($syspath) {
 	<li>given multiple words in a CamelCase classname the last word, and last
 	    word only, is converted to a directory and the classname with out the
 	    last word in it is used as the file name</li>
-	<li>in resolution, if only the first segment of a namespace is provided the
-	    class will resolve to the top class with the segment as the main
-	    namespace or the first subnamespace in cases of foreign namespaces</li>
+	<li>in namespace resolution, the namespace is always considered a segment
+	    even if a namespace with the exact name exists and is matched against
+	    all namespaces in order until a namespace that contains that segment
+	    is found</li>
+	<li>if the main segment of the namespace of the symbol that is being loaded
+	    is not known to be a main segment in the system the namespace is
+	    ignored and symbol not loaded</li>
 	<li>whenever a namespace ends with <code>next\&lt;namespace&gt;</code> the
 	    class will resolve to the first class in the namespace after the
 	    current module in the stack that has the class in the namespace after
-	    <code>next</code></li>
+	    <code>next</code> as it's main namespace</li>
 	<li>we recognize php is case insensitive but calling classes from freia
 	    modules using the wrong case will result in undefined behavior (will
 	    work if it was previously loaded, or on window, fail otherwise due to
 	    file mapping)</li>
 </ul>
+
+<p>Going back briefly to the second rule, a class <code>ex.ExampleClass</code>
+will match <code>ex.system.ExampleClass</code> as well as
+<code>ex.system.core.ExampleClass</code>; but it will also match
+<code>myns.ex.ExampleClass</code> as well as in extreme examples
+<code>myns.core.system.ex.overwrites.ExampleClass</code>. You dont have to
+worry about the system becoming this rediculas in practice but given the rules
+do allow that much flexibility please make sure to pick a very unique main
+segment to your namespace.</p>
 
 <p>As an optional requirement, which we do not impose, we recomend namespaces
 be lowercase letters (using <code>\</code> to seperate words) and not be used
