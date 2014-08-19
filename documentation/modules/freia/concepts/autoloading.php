@@ -125,7 +125,7 @@ extends <code>B</code></small></p>
 \module1\system\core\Example1 // => module1.system.core.Example1
 \module1\system\Example1 // => module1.system.legacysupport.Example1
 \module1\tools\Example1 // => module1.tools.Example1
-\module1\Example1 // => module1.systen.core.Example1</code></pre>
+\module1\Example1 // => module1.system.legacysupport.Example1</code></pre>
 
 <pre><code class="php"># overwriting from foreign namespace
 # --------------------------------------------------------------------------
