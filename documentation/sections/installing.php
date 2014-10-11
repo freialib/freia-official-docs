@@ -28,7 +28,7 @@ dependencies into your revision control system.</p>
 <h4>Minimal version</h4>
 
 <pre><code class="json">{
-	"autoload": {
+	"extra": {
 		"freia": {
 			"load": [ "vendor" ]
 		}
@@ -50,7 +50,7 @@ by freia's autoloader.</p>
 <p>All out coding hermit mode,</p>
 
 <pre><code class="json">{
-	"autoload": {
+	"extra": {
 		"freia": {
 			"load": [ "vendor" ]
 		}
@@ -71,7 +71,7 @@ autoloader, it just requires all the official modules in the freia library.</p>
 <a href="https://github.com/freialib/freialib-bundle/blob/master/composer.json">freialib-bundle/composer.json</a></p>
 
 <pre><code class="json">{
-	"autoload": {
+	"extra": {
 		"freia": {
 			"load": [ "vendor" ]
 		}
@@ -101,7 +101,7 @@ your <code>composer.json</code>.</p>
 		}
 	],
 
-	"autoload": {
+	"extra": {
 		"freia": {
 			"load": [
 				"src/server/system",
@@ -120,7 +120,7 @@ your <code>composer.json</code>.</p>
 
 	"require": {
 		"php": ">=5.4.10",
-		"freialib/bundle": "~1.0.0"
+		"freialib/bundle": "1.*"
 	}
 }</code></pre>
 
