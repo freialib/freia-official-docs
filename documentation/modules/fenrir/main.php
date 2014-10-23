@@ -8,6 +8,7 @@
 	<p class="toc-Subtitle">system</p>
 	<ul>
 		<li><a class="toc-Entry" href="#fenrir-system-MysqlDatabase">MysqlDatabase</a></li>
+		<li><a class="toc-Entry" href="#fenrir-system-MysqlRepoTrait">MysqlRepoTrait</a></li>
 	</ul>
 	<p></p>
 	<ul>
@@ -29,6 +30,7 @@ non-portable techniques).</p>
 <?php
 	$classes = [
 		'system.MysqlDatabase',
+		'system.MysqlRepoTrait',
 		'tools.MakeCommand'
 	];
  ?>

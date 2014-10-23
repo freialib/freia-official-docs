@@ -25,3 +25,43 @@ example:</p>
 	src/
 	composer.json
 </code></pre>
+
+<p>Ocassionally you'll need to have modules that are loaded in a specific order,
+or follow certain rules, on such module type are debug modules. Debug modules
+are only loaded if in debug mode, otherwise they are ignored. To specify a
+debug module specify it in the freia rules section:</p>
+
+<pre><code class="json">{
+	"name": "yournamespace/subnamespace",
+	"type": "freia-module",
+	"extra": {
+		"freia": {
+			"rules": {
+				"identity": [ "debug" ],
+			}
+		}
+	},
+}</code></pre>
+
+<p>If you just need to specify a module should precede another module use
+the matches-before rule:</p>
+
+<pre><code class="json">{
+	"name": "yournamespace/subnamespace",
+	"type": "freia-module",
+	"extra": {
+		"freia": {
+			"matches-before": [
+				"hlin.security",
+				"hlin.archetype",
+				"hlin.attribute",
+				"hlin.tools"
+			]
+		}
+	},
+}</code></pre>
+
+<p>As in the example you can specify multiple other modules.</p>
+
+<p>You may also use both the debug module identity and the matches-before rule
+simultaniously on a single module.</p>
