@@ -44,24 +44,25 @@ debug module specify it in the freia rules section:</p>
 }</code></pre>
 
 <p>If you just need to specify a module should precede another module use
-the matches-before rule:</p>
+the <code>matches-before</code> rule:</p>
 
 <pre><code class="json">{
 	"name": "yournamespace/subnamespace",
 	"type": "freia-module",
 	"extra": {
 		"freia": {
-			"matches-before": [
-				"hlin.security",
-				"hlin.archetype",
-				"hlin.attribute",
-				"hlin.tools"
-			]
+			"rules": {
+				"matches-before": [
+					"hlin.security",
+					"hlin.archetype",
+					"hlin.attribute",
+					"hlin.tools"
+				]
+			}
 		}
 	},
 }</code></pre>
 
-<p>As in the example you can specify multiple other modules.</p>
-
-<p>You may also use both the debug module identity and the matches-before rule
-simultaniously on a single module.</p>
+<p>As in the example you can specify multiple other modules. You may also use
+both the <code>debug</code> module <code>identity</code> and the
+<code>matches-before</code> rule simultaniously on a single module.</p>
