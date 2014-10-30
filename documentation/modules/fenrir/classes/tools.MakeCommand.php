@@ -1,6 +1,6 @@
 <p>Make command helps in creating classes. The command will try to figure out
 what you want to make and fill in the gaps, so you dont have to. You can
-explicitly teach it patterns though the <code>freia/make/class-patterns</code>
+explicitly teach it patterns though the <code>freia/make/patterns</code>
 configuration.</p>
 
 <pre><code class="bash"># Get available domains
@@ -16,7 +16,7 @@ server/console make example.FooCommand</code></pre>
 server/console make class:example.FooCommand</code></pre>
 
 <p>To create a new pattern add the following to a
-<code>freia/make/class-patterns</code> configuration file:</p>
+<code>freia/make/patterns</code> configuration file:</p>
 
 <pre><code class="php">&lt;?php return [
 
