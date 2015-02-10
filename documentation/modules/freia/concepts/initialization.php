@@ -19,14 +19,11 @@ function context($syspath, $logspath, Autoloader $autoloader) {
 	// php settings
 	date_default_timezone_set('Europe/London');
 
-	// paths
-	$cachepath = realpath("$syspath/cache");
-
-	// paths to obscure in logs
-	$secpaths = ['syspath' => $syspath];
+	// filesystem wrapper
+	$fs = \fenrir\Filesystem::instance();
 
 	// logger setup
-	$fs = \fenrir\Filesystem::instance();
+	$secpaths = ['syspath' => $syspath]; // paths to obscure
 	$logger = \hlin\FileLogger::instance($fs, $logspath, $secpaths);
 
 	// configuration reader
@@ -39,10 +36,15 @@ function context($syspath, $logspath, Autoloader $autoloader) {
 	// paths
 	$context->addpath('syspath', $syspath);
 	$context->addpath('logspath', $logspath);
-	$context->addpath('cachepath', $cachepath);
+	$context->addpath('cachepath', realpath("$syspath/cache"));
 
 	return $context;
-}</code></pre>
+}
+
+// ...
+
+$logspath = "$syspath/files/logs";
+$context = context($syspath, $logspath, $autoloader);</code></pre>
 
 <p>99% of modules will require just the above to function. In some cases
 you may need to add to the above to satisfy the special needs of specialized
@@ -52,6 +54,11 @@ initialization altogheter.</p>
 <p>Here are a few "extra" configuration values as an example:</p>
 
 <pre><code class="php">&lt;?php namespace appname\main;
+
+/**
+ * @return \hlin\archetype\Context
+ */
+function context($syspath, $logspath, Autoloader $autoloader) {
 
 	// ...
 
@@ -66,35 +73,40 @@ initialization altogheter.</p>
 	$context->filemap_is($filemap);
 	$context->autoloader_is($autoloader);
 
-	// ...
-
+	return $context;
+}
 </code></pre>
 
 <h4>Putting it all togheter</h4>
 
 <p>So far we've gone into what code you need for initialization but not really
 how you use it. Let's assume the <code>appname.main.context</code> function
-defined above is in <code>main.context.php</code> and the code illustrated
-in the Autoloader section is in <code>main.autoloader.php</code>. We recomend
-you always use <code>main</code> for the filename of your entry point, and
-place your entry point on the root of the project.</p>
+defined above is in <code>context.php</code> and the code illustrated
+in the Autoloader section is in <code>autoloader.php</code>.</p>
+
+<p><i>Hint: move them there if you're coding along with the docs.</i></p>
+
+<p>We recomend you always use <code>main</code> for the filename of your entry
+point, and place your entry point on the root of the project.</p>
 
 <p>Assuming all files mentioned so far are on the root of your project, here's
 a minimal example of how your entry point might look for a web app:</p>
 
-<h5>main.php</h5>
+<h5>src/main.php</h5>
 <pre><code class="php">&lt;?php namespace appname\main;
+
+use \fenrir\MysqlDatabasel;
+use \fenrir\HttpDispatcher;
 
 /**
  * ...
  */
-function main($localconf) {
+function main($syspath, $srcpath, $wwwconf) {
 
-	$syspath = realpath(__DIR__);
-	$logspath = realpath("$syspath/logs");
+	$logspath = realpath("$syspath/files/logs");
 
-	require "$syspath/main.autoloader.php";
-	require "$syspath/main.context.php";
+	require "$srcpath/autoloader.php";
+	require "$srcpath/context.php";
 
 	// init autoloader
 	$autoloader = autoloader($syspath);
@@ -107,11 +119,14 @@ function main($localconf) {
 	// init main context
 	$context = context($syspath, $logspath, $autoloader);
 
-	// example logic
 	try {
+
+		// Example Main Logic
+		// ------------------
+
 		$dbconf = $context->confs->read('freia/databases');
-		$mysql = \fenrir\MysqlDatabase::instance($dbconf['appname.mysql']);
-		$http = \fenrir\HttpDispatcher::instance($context);
+		$mysql  = MysqlDatabase::instance($dbconf['appname.mysql']);
+		$http   = HttpDispatcher::instance($context);
 
 		require "$syspath/routes/main.php"; # => router function
 		\appname\routes\router($http, $context, $mysql);
@@ -124,11 +139,12 @@ function main($localconf) {
 	}
 }
 </code></pre>
-<h5>index.php</h5>
+<h5>public/index.php</h5>
 <pre><code class="php">&lt;?php namespace appname\main;
 
 	$wwwpath = realpath(__DIR__);
-	$siteroot = realpath("$wwwpath/..");
+	$syspath = realpath("$wwwpath/..");
+	$srcpath = realpath("$syspath/src");
 
 	// ignore existing files in PHP build-in server
 	$uri = $_SERVER['REQUEST_URI'];
@@ -140,17 +156,17 @@ function main($localconf) {
 	}
 
 	// private keys, server settings and sensitive information
-	$wwwconf = include "$siteroot/conf.php";
+	$wwwconf = include "SECURE/PATH/TO/wwwconf.php";
 	$wwwconf['wwwpath'] = $wwwpath;
 
-	require "{$wwwconf['syspath']}/main.php";
+	require "$srcpath/main.php";
 
 	// invoke main
-	$exitcode = main($wwwconf);
+	$exitcode = main($syspath, $srcpath, $wwwconf);
 
 	// handle system failure
 	if ($exitcode != 0) {
-		$errpage = "$wwwpath/err/$exitcode.html";
+		$errpage = "$wwwpath/$exitcode.html";
 		if (file_exists($errpage)) {
 			http_response_code($exitcode);
 			include $errpage;
@@ -160,32 +176,32 @@ function main($localconf) {
 
 <h5>console</h5>
 
-<p>It's fairly simply to setup other specialized entry points:</p>
+<p>To setup a specialized entry point it's fairly easy:</p>
 
 <pre><code class="php">#!/usr/bin/env php
-&lt;?php
+&lt;?php namespace appname\main;
 
-	$syspath = realpath(__DIR__);
-	$logspath = realpath("$syspath/logs");
+	date_default_timezone_set('Europe/London');
 
-	require "$syspath/main.autoloader.php";
-	require "$syspath/main.context.php";
+	$syspath  = realpath(__DIR__);
+	$srcpath  = realpath("$syspath/src");
+	$logspath = realpath("$syspath/files/logs");
+
+	require "$srcpath/autoloader.php";
+	require "$srcpath/context.php";
 
 	// init autoloader
-	$autoloader = \appname\main\autoloader($syspath);
+	$autoloader = autoloader($syspath);
+	$autoloader !== null or die(" Err: Missing dependencies.\n");
 
-	if ($autoloader === null) {
-		die(" Err: Missing dependencies.\n");
-	}
+	// init context
+	$context = context($syspath, $logspath, $autoloader);
 
-	// init main context
-	$context = \appname\main\context($syspath, $logspath, $autoloader);
-
-	// create console handler
-	$console = \fenrir\Console::instance($context);
+	// create console
+	$console = \hlin\Console::instance($context);
 
 	// invoke main
 	$commands = $context->confs->read('freia/commands');
-	return $console->main($commands);
+	exit($console->main($commands));
 
 </code></pre>

@@ -2,6 +2,7 @@
 
 	<div class="toc-Title"><a href="#freia">freia Module</a></div>
 	<ol>
+		<li><a class="toc-Entry" href="#doc-freia-examples-briefing">Examples Briefing</a></li>
 		<li><a class="toc-Entry" href="#doc-freia-autoloading">Autoloading</a></li>
 		<li><a class="toc-Entry" href="#doc-freia-init">Initialization</a></li>
 		<li><a class="toc-Entry" href="#doc-freia-defining-a-module">Defining a Module</a></li>
@@ -25,6 +26,7 @@ requirement (see: <a href="#doc-freia-errors">exceptions &amp; errors</a>),
 actually require the autoloader to be active for the dependencies to resolve
 (mainly interface dependencies).</p>
 
+<?php include __DIR__.'/concepts/examples-briefing.php' ?>
 <?php include __DIR__.'/concepts/autoloading.php' ?>
 <?php include __DIR__.'/concepts/initialization.php' ?>
 <?php include __DIR__.'/concepts/defining-a-module.php' ?>

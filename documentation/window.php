@@ -27,8 +27,6 @@
 				<ul>
 					<li><i class="icon-hammer"></i> <a href="/license.txt">BSD 2-clause License</a></li>
 					<li><i class="icon-github"></i> <a href="https://github.com/freialib">Github Repository</a></li>
-					<li><i class="icon-twitter"></i> <a href="https://twitter.com/search?f=realtime&amp;q=%23freialib">Twitter <code>#freialib</code></a></li>
-					<li><i class="icon-stackexchange"></i> <a href="http://stackoverflow.com/search?q=%23freialib">Ask the community</a></li>
 				</ul>
 			</div>
 			<div class="toc">

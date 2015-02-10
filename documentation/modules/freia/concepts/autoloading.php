@@ -15,21 +15,27 @@ initialized.</p>
  */
 function autoloader($syspath) {
 
-	// paths where to search for freia modules (relative to $syspath)
-	$paths = ['system', 'vendor'];
-
 	// include composer autoloader
-	require "$syspath/vendor/autoload.php";
+	require "$syspath/packagist/autoload.php";
+
+	// paths where to search for freia modules (relative to $syspath)
+	$paths = ['src', 'packagist'];
 
 	// initialize
-	$autoloader = \freia\SymbolLoader::instance($syspath, $paths);
+	$autoloader = \freia\autoloader\SymbolLoader::instance (
+		$syspath, [ 'load' => $paths ] );
 
 	// add as main autoloader
-	$is_registered = $autoloader->register(true);
+	$isRegistered = $autoloader->register(true);
+	$isRegistered or die('Failed to register as main autoloader');
 
 	// fulfill archetype contract before returning
 	return \freia\Autoloader::wrap($autoloader);
-}</code></pre>
+}
+
+// ...
+
+autoloader($syspath);</code></pre>
 
 <p>We recomend storing the paths configuration in your
 <code>composer.json</code>. Building on the above example you can just change
@@ -38,16 +44,30 @@ function autoloader($syspath) {
 
 <pre><code class="php">&lt;?php namespace appname\main;
 
-	// ...
+/**
+ * @return \hlin\archetype\Autoloader
+ */
+function autoloader($syspath) {
 
+	// include composer autoloader
+	require "$syspath/packagist/autoload.php";
+
+	// read environment from composer.json
 	$composerjson = "$syspath/composer.json";
 	file_exists($composerjson) or die(" Err: missing composer.json\n");
 	$env = json_decode(file_get_contents($composerjson), true);
-	$paths = $env['autoload']['freia'];
 
-	// ...
+	// initialize
+	$autoloader = \freia\autoloader\SymbolLoader::instance (
+	    $syspath, $env['extra']['freia'] );
 
-</code></pre>
+	// add as main autoloader
+	$isRegistered = $autoloader->register(true);
+	$isRegistered or die('Failed to register as main autoloader');
+
+	// fulfill archetype contract before returning
+	return \freia\Autoloader::wrap($autoloader);
+}</code></pre>
 
 <h4>Class Name Conventions</h4>
 
@@ -134,21 +154,21 @@ module3.system
 <p><small>In the examples bellow <code>A &lt;- B</code> means <code>A</code>
 extends <code>B</code></small></p>
 <pre><code class="php"># simple resolution (absolute and dynamic)
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 \module1\system\core\Example1 // => module1.system.core.Example1
 \module1\system\Example1 // => module1.system.legacysupport.Example1
 \module1\tools\Example1 // => module1.tools.Example1
 \module1\Example1 // => module1.system.legacysupport.Example1</code></pre>
 
 <pre><code class="php"># overwriting from foreign namespace
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 \module2\system\Example1 // => module2.system.Example1
 \module2\Example1 // => module0.module2.Example1</code></pre>
 
 <pre><code class="php"># infinite blind extention via the "next" keyword
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 \module1\Example2 // => module1.system.Example2 &lt;- module1.tools.Example1</code></pre>
 
 <pre><code class="php"># explicit inheritance
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 \module3\Example3 // => module3.system.Example3 &lt;- module1.system.core.Example1</code></pre>

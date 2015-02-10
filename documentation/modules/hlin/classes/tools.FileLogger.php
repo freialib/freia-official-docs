@@ -14,6 +14,7 @@ initialization block</a>.</p>
 be replaced inside the logs both for bravety and clarity, as well as
 security concerns. In general the strings are merely frequently used paths.</p>
 
-<pre><code class="php">$logger = \hlin\FileLogger::instance($fs, $logspath, ['syspath' => ]);</code></pre>
+<pre><code class="php">$logger = \hlin\FileLogger::instance (
+	$fs, $logspath, ['syspath' => $syspath] );</code></pre>
 
 

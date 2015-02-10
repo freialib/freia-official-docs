@@ -5,36 +5,37 @@
 minimal example:</p>
 
 <pre><code class="php">#!/usr/bin/env php
-&lt;?php namespace your_namespace\main;
+&lt;?php namespace appname\main;
 
-	// php settings
 	date_default_timezone_set('Europe/London');
 
-	$syspath = realpath(__DIR__);
-	$logspath = realpath("$syspath/logs");
+    $syspath  = realpath(__DIR__);
+    $srcpath  = realpath("$syspath/src");
+    $logspath = realpath("$syspath/files/logs");
 
-	require "$syspath/autoloader.php";
-	$autoloader = autoloader($syspath);
+    require "$srcpath/autoloader.php";
+    require "$srcpath/context.php";
 
-	if ($autoloader === null) {
-		die('Err: failed to initialize autoloader');
-	}
+    // init autoloader
+    $autoloader = autoloader($syspath);
+    $autoloader !== null or die(" Err: Missing dependencies.\n");
 
-	require "$syspath/context.php";
-	$context = context($syspath, $logspath, $autoloader);
+    // init context
+    $context = context($syspath, $logspath, $autoloader);
 
-	$console = \hlin\Console::instance($context);
-	$commands = $context->confs->read('freia/commands');
-	exit($console->main($commands));</code></pre>
+    // create console
+    $console = \hlin\Console::instance($context);
+
+    // invoke main
+    $commands = $context->confs->read('freia/commands');
+    exit($console->main($commands));
+
+</code></pre>
+<pre><code class="sh">$ chmod +x console</code></pre>
 
 <p>Invoking from the command line is fairly simple.</p>
 
-<pre><code class="bash">$ cd path/to/console
-# simple invokation
-$ ./console
-# you can also just invoke from outside (we'll assume parent is server/)
-$ cd ..
-$ server/console</code></pre>
+<pre><code class="bash">$ ./console</code></pre>
 
 <p>It's important to note that by default the library does not provide any
 sophisticated flag parsing; it's a lot more flexible that way and command

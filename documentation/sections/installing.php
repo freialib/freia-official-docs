@@ -27,20 +27,19 @@ dependencies into your revision control system.</p>
 
 <h4>Minimal version</h4>
 
+<pre><code class="sh">$ mkdir PROJECT/
+$ cd PROJECT/
+$ edit composer.json
+</code></pre>
 <pre><code class="json">{
-	"extra": {
-		"freia": {
-			"load": [ "vendor" ]
-		}
-	},
-
 	"require": {
-		"freia/autoloader": "~1.0.0",
-		"hlin/archetype": "~1.0.0",
-		"hlin/attribute": "~1.0.0",
-		"hlin/tools": "~1.0.0"
+		"freia/autoloader": "1.*",
+		"hlin/archetype": "1.*",
+		"hlin/attribute": "1.*",
+		"hlin/tools": "1.*"
 	}
 }</code></pre>
+<pre><code class="sh">$ composer install</code></pre>
 
 <p>Add paths to <code>load</code> (ie. your own paths) to have them recognized
 by freia's autoloader.</p>
@@ -57,7 +56,7 @@ by freia's autoloader.</p>
 	},
 
 	"require": {
-		"freia/autoloader": "~1.0.0"
+		"freia/autoloader": "1.*"
 	}
 }</code></pre>
 
@@ -78,7 +77,7 @@ autoloader, it just requires all the official modules in the freia library.</p>
 	},
 
 	"require": {
-		"freialib/bundle": "~1.0.0"
+		"freialib/bundle": "1.*"
 	}
 }</code></pre>
 
@@ -103,6 +102,7 @@ your <code>composer.json</code>.</p>
 
 	"extra": {
 		"freia": {
+			"cache.dir": "files/cache",
 			"load": [
 				"src/server/system",
 				"src/server/theme",
@@ -135,13 +135,13 @@ structure from scratch to get the most benefit by avoiding any unncesary
 clutter that a generic structure might impose, but if you're in a hurry or need
 a reference point here you go:</p>
 
-<pre><code class="vdr / no-highlight">git clone --depth=1 https://github.com/freialib/framework YOUR_PROJECT/
-cd YOUR_PROJECT/
-rm -rf .git
-cd 1.x/
-git init
-git add -A
-git commit -m "1.0"</code></pre>
+<pre><code class="vdr / no-highlight">$ git clone --depth=1 https://github.com/freialib/framework YOUR_PROJECT/
+$ cd YOUR_PROJECT/
+$ rm -rf .git
+$ cd 1.x/
+$ git init
+$ git add -A
+$ git commit -m "1.0"</code></pre>
 <p><small>Above <code>1.0</code> and <code>1.x</code> refer to your own project; not freia.</small></p>
 <p>If you don't have the <code>git</code> please go to
 <a href="http://git-scm.com/">http://git-scm.com/</a>, it's a great tool <i class="icon-emo-wink2"></i></p>

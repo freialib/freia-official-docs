@@ -4,16 +4,16 @@ explicitly teach it patterns though the <code>freia/make/patterns</code>
 configuration.</p>
 
 <pre><code class="bash"># Get available domains
-server/console make ?</code></pre>
+$ ./console make ?</code></pre>
 
 <pre><code class="bash"># Create class FooCommand (that implements \hlin\archetype\Command) with
 # namespace example; place it in the file /Command/Foo.php located in the
 # class path for the module specific to namespace example
-server/console make example.FooCommand</code></pre>
+$ ./console make example.FooCommand</code></pre>
 
 <pre><code class="bash"># Same as above only we ensure that the problem example.FooCommand is
 # interpreted as a class
-server/console make class:example.FooCommand</code></pre>
+$ ./console make class:example.FooCommand</code></pre>
 
 <p>To create a new pattern add the following to a
 <code>freia/make/patterns</code> configuration file:</p>
